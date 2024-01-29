@@ -1,4 +1,3 @@
-const { Console } = require("console");
 const initialState = require("../Data/Data.json");
 
 const bookReducer  = (state=initialState, action) => {
