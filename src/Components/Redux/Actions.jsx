@@ -7,7 +7,7 @@ export const editBook = (id, updatedBook) => ({
     payload: {id, updatedBook},
 });
 
-export const addBook = (movie) => ({
+export const addBook = (book) => ({
     type:"Add",
-    payload: movie,
+    payload: book,
 })
