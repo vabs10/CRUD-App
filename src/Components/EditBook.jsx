@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editBook } from './Redux/Actions'; // Make sure to import the correct action for editing
 import { CONSTANTS, Util } from './Constants';
 
-function EditBookForm() {
+function EditBookForm({books}) {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log("Books ID:-",id);
   
   // Use useSelector to access books from Redux state
-  const books = useSelector((state) => state);
+  // const books = useSelector((state) => state);
 
   const [editedBook, setEditedBook] = useState(CONSTANTS.emptyBookObj);
   const isSaveDisabled = !editedBook.title || !editedBook.author || !editedBook.genre || !editedBook.publicationYear || !editedBook.rating;
@@ -30,18 +31,17 @@ function EditBookForm() {
     e.preventDefault();
     console.log("editedBook -> ", editedBook);
     dispatch(editBook(id, editedBook));
-    navigate('/');
+    navigate('/books');
     setEditedBook(CONSTANTS.emptyBookObj);
   };
 
-  const headerText = `Edit ${editedBook.title}`;
   
   return (
     <>
       
       <form onSubmit={handleUpdateBook}>
         <div className="form-group">
-          <label htmlFor="title">Title of the book?</label>
+          <label htmlFor="title">Title of the book</label>
           <input
             type="text"
             name="title"
@@ -52,7 +52,7 @@ function EditBookForm() {
           />
         </div>
         <div className="form-group mt-3">
-          <label htmlFor="author">Book Author?</label>
+          <label htmlFor="author">Book Author</label>
           <input
             type="text"
             name="author"
@@ -63,7 +63,7 @@ function EditBookForm() {
           />
         </div>
         <div className="form-group mt-3">
-          <label htmlFor="genre">Book Genre?</label>
+          <label htmlFor="genre">Book Genre</label>
           <input
             type="text"
             name="genre"
@@ -74,7 +74,7 @@ function EditBookForm() {
           />
         </div>
         <div className="form-group mt-3">
-          <label htmlFor="publicationYear">Book Publication Year?</label>
+          <label htmlFor="publicationYear">Book Publication Year</label>
           <input
             type="number"
             name="publicationYear"
@@ -85,7 +85,7 @@ function EditBookForm() {
           />
         </div>
         <div className="form-group mt-3">
-          <label htmlFor="rating">Book Rating?</label>
+          <label htmlFor="rating">Book Rating</label>
           <input
             type="number"
             name="rating"

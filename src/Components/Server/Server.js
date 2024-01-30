@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 let books = require("../Data/Data.json");
+const cors = require("cors");
+app.use(cors());
 
 // We do GET request to get all data from the JSON
 
@@ -61,7 +63,7 @@ app.put("/api/books/:id", (req, res) => {
     res.send("Some data is missing please check");
   } else {
     books = books.map((ebook) => {
-      if (ebook.id == bookId) {
+      if (ebook.id === bookId) {
         return book;
       } else {
         return ebook;
@@ -73,4 +75,7 @@ app.put("/api/books/:id", (req, res) => {
 });
 
 // Added the port where it can display the data
-app.listen(8082);
+const port = process.env.PORT || 8082; // Use 3001 or any available port
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});

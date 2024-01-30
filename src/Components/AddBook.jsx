@@ -19,7 +19,7 @@ function AddBookForm() {
     e.preventDefault();
     console.log("newBook -> ", newBook);
     dispatch(addBook(newBook));
-    navigate('/');
+    navigate('/books');
     setNewBook(CONSTANTS.emptyBookObj);
   };
 

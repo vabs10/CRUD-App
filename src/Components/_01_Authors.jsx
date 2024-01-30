@@ -4,33 +4,23 @@ import { deleteBook } from "./Redux/Actions";
 import { Link } from "react-router-dom";
 import Book from "./_02_Books";
 
-function Table() {
-  const dispatch = useDispatch();
-  const books = useSelector((state) => state);
+function Table({books, handleDelete}) {
 
-  const [newBook, setNewBook] = useState({
-    title: "",
-    author: "",
-    genre: "",
-    publicationYear: "",
-    rating: "",
-  });
 
-  if (!books) {
-    return <div>Loading books...</div>;
-  }
-  if (books.error) {
-    return <div>Error fetching books: {books.error}</div>;
-  }
 
-  const handleDelete = (id) => {
-    dispatch(deleteBook(id));
-  };
+  // if (!books) {
+  //   return <div>Loading books...</div>;
+  // }
+  // if (books.error) {
+  //   return <div>Error fetching books: {books.error}</div>;
+  // }
+
+ 
 return (
     <div className="container mt-4">
-      <Link to="/add-book" className="btn btn-primary">
+      {/* <Link to="/add-book" className="btn btn-primary">
         Add Book
-      </Link>
+      </Link> */}
       <table className="table table-striped">
         <thead className="thead-dark">
           <tr>
@@ -48,7 +38,7 @@ return (
             return <Book
             key={book.id}
             SlNo={index+1}
-            books={books}
+            book={book}
             handleDelete={handleDelete} />
           }
             
