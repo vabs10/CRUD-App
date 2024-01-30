@@ -11,3 +11,7 @@ export const addBook = (book) => ({
     type:"Add",
     payload: book,
 })
+export const fetchBooks = (data) => ({
+    type:"Fetch",
+    payload: data,
+  });
